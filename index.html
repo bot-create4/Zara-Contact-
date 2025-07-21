@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Support Us - Zara Assistant</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 500px;
+      padding: 30px;
+      background: #1e1e1e;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00ffb3;
+    }
+
+    h1 {
+      color: #00ffc3;
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    .sub-text {
+      color: #ccc;
+      font-size: 1em;
+      margin-bottom: 25px;
+    }
+
+    .contact-box textarea {
+      width: 100%;
+      height: 100px;
+      padding: 12px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      background: #2c2c2c;
+      color: white;
+      resize: none;
+    }
+
+    .contact-box button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #00ffc3;
+      border: none;
+      border-radius: 8px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .contact-box button:hover {
+      background-color: #00cfa1;
+    }
+
+    .social-links {
+      margin-top: 25px;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      color: #00ffc3;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .social-links img {
+      margin-right: 8px;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 0.85em;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🤝 Support Zara Assistant</h1>
+    <p class="sub-text">Need help? Send us a message or contact via WhatsApp.</p>
+
+    <div class="contact-box">
+      <textarea id="message" placeholder="Type your support message..."></textarea>
+      <button onclick="sendEmail()">Send</button>
+    </div>
+
+    <div class="social-links">
+      <a href="https://wa.me/94726880784" target="_blank">
+        <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp">
+        Chat on WhatsApp
+      </a>
+    </div>
+
+    <footer>
+      <p>Zara Assistant • Developer: Ransara Devnath</p>
+      <p>Copyright ©️ 2025</p>
+    </footer>
+  </div>
+
+  <script>
+    function sendEmail() {
+      const message = document.getElementById("message").value;
+      if (message.trim()) {
+        window.location.href = `mailto:ransaramax87@gmail.com?subject=Support Zara Assistant&body=${encodeURIComponent(message)}`;
+      } else {
+        alert("Please enter a message first.");
+      }
+    }
+  </script>
+</body>
+</html>
