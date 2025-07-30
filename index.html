@@ -1,125 +1,848 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Support Us - Zara Assistant</title>
-  <style>
-    body {
-      background-color: #121212;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YASIYA-MD | MAIN SITE</title>
+    <link rel="icon" type="image/png" href="tPsnkv2d/e20c71cfd1e0d222.jpg">
+    <link rel="stylesheet" href="style/styles.css">
+    <style>
+        /* Loading Screen Styles */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
 
-    .container {
-      text-align: center;
-      max-width: 500px;
-      padding: 30px;
-      background: #1e1e1e;
-      border-radius: 12px;
-      box-shadow: 0 0 20px #00ffb3;
-    }
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
 
-    h1 {
-      color: #00ffc3;
-      font-size: 2em;
-      margin-bottom: 10px;
-    }
+        .loading-container {
+            text-align: center;
+            position: relative;
+        }
 
-    .sub-text {
-      color: #ccc;
-      font-size: 1em;
-      margin-bottom: 25px;
-    }
+        .loading-logo {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
 
-    .contact-box textarea {
-      width: 100%;
-      height: 100px;
-      padding: 12px;
-      font-size: 1em;
-      border: none;
-      border-radius: 8px;
-      background: #2c2c2c;
-      color: white;
-      resize: none;
-    }
+        .loading-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #8b5cf6, #06b6d4, #10b981);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
 
-    .contact-box button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #00ffc3;
-      border: none;
-      border-radius: 8px;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+        .loading-subtitle {
+            color: #94a3b8;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+        }
 
-    .contact-box button:hover {
-      background-color: #00cfa1;
-    }
+        /* Advanced Loading Animation */
+        .loading-spinner {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+        }
 
-    .social-links {
-      margin-top: 25px;
-    }
+        .spinner-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid transparent;
+        }
 
-    .social-links a {
-      display: inline-flex;
-      align-items: center;
-      color: #00ffc3;
-      text-decoration: none;
-      font-weight: bold;
-    }
+        .spinner-ring:nth-child(1) {
+            border-top: 3px solid #8b5cf6;
+            animation: spin 1.5s linear infinite;
+        }
 
-    .social-links img {
-      margin-right: 8px;
-    }
+        .spinner-ring:nth-child(2) {
+            border-right: 3px solid #06b6d4;
+            animation: spin 2s linear infinite reverse;
+            transform: scale(0.8);
+        }
 
-    footer {
-      margin-top: 30px;
-      font-size: 0.85em;
-      color: #999;
-    }
-  </style>
+        .spinner-ring:nth-child(3) {
+            border-bottom: 3px solid #10b981;
+            animation: spin 2.5s linear infinite;
+            transform: scale(0.6);
+        }
+
+        .loading-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #8b5cf6, #06b6d4);
+            animation: dotBounce 1.4s ease-in-out infinite both;
+        }
+
+        .dot:nth-child(1) { animation-delay: -0.32s; }
+        .dot:nth-child(2) { animation-delay: -0.16s; }
+        .dot:nth-child(3) { animation-delay: 0s; }
+
+        .loading-progress {
+            width: 300px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            margin: 2rem auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #8b5cf6, #06b6d4, #10b981);
+            border-radius: 2px;
+            transform: translateX(-100%);
+            animation: progressLoad 3s ease-out forwards;
+        }
+
+        .loading-text {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            opacity: 0.7;
+            animation: textFade 2s ease-in-out infinite alternate;
+        }
+
+        /* Floating particles */
+        .loading-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(139, 92, 246, 0.6);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: -1s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: -2s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: -3s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: -4s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: -5s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: -6s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: -7s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: -8s; }
+
+        /* Animations */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes dotBounce {
+            0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes progressLoad {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(0%); }
+        }
+
+        @keyframes textFade {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(100vh) translateX(0px) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            50% { 
+                transform: translateY(50vh) translateX(50px) rotate(180deg);
+                opacity: 0.8;
+            }
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .loading-title {
+                font-size: 2rem;
+            }
+            .loading-subtitle {
+                font-size: 1rem;
+            }
+            .loading-spinner {
+                width: 80px;
+                height: 80px;
+            }
+            .loading-progress {
+                width: 250px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🤝 Support Zara Assistant</h1>
-    <p class="sub-text">Need help? Send us a message or contact via WhatsApp.</p>
-
-    <div class="contact-box">
-      <textarea id="message" placeholder="Type your support message..."></textarea>
-      <button onclick="sendEmail()">Send</button>
+    <!-- Professional Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        
+        <div class="loading-container">
+            <div class="loading-logo">🤖</div>
+            <h1 class="loading-title">YASIYA-MD</h1>
+            <p class="loading-subtitle">Next-level WhatsApp automation platform</p>
+            
+            <div class="loading-spinner">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+            </div>
+            
+            <div class="loading-progress">
+                <div class="progress-bar"></div>
+            </div>
+            
+            <div class="loading-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            
+            <p class="loading-text">Initializing your bot experience...</p>
+        </div>
     </div>
 
-    <div class="social-links">
-      <a href="https://wa.me/94726880784" target="_blank">
-        <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp">
-        Chat on WhatsApp
-      </a>
+    <div class="floating-elements">
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
     </div>
 
-    <footer>
-      <p>Zara Assistant • Developer: Ransara Devnath</p>
-      <p>Copyright ©️ 2025</p>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🤖 YASIYA-MD</div>
+            
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                <li><a href="#" class="nav-link" data-page="about">About</a></li>
+                <!-- <li><a href="#" class="nav-link" data-page="contact">Contact</a></li> -->
+            </ul>
+
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#" class="nav-link active" data-page="home">🏠 Home</a>
+                <a href="#" class="nav-link" data-page="about">ℹ️ About</a>
+                <a href="#" class="nav-link" data-page="contact">📧 Contact</a>
+                <a href="#" class="sign-in-btn">SIGN IN</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <!-- Home Page -->
+        <section id="home" class="page-section active">
+            <div class="hero">
+                <h1>YASIYA-MD</h1>
+                <p class="subtitle">
+                    Next-level WhatsApp automation platform. AI-powered, secure, and lightning-fast. 
+                    Automate replies, manage groups, and unlock advanced features for your business.
+                </p>
+                
+                <div class="tech-stack">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Express.js</span>
+                    <span class="tech-tag">MongoDB</span>
+                </div>
+
+                <div class="main-tabs">
+                    <button class="tab-btn active" onclick="showTab('connect')">
+                        🔗 CONNECT
+                    </button>
+                    <button class="tab-btn" onclick="showTab('deploy')">
+                        🚀 DEPLOY
+                    </button>
+                    <button class="tab-btn" onclick="showTab('videos')">
+                        📹 VIDEOS
+                    </button>
+                    <button class="tab-btn" onclick="showTab('files')">
+                        📁 FILES
+                    </button>
+                </div>
+
+                <div id="connect" class="tab-content active">
+                    <div class="cards-grid">
+                                <div class="card">
+                            <div class="card-icon">👻</div>
+                            <h3>YASIYA-MD</h3>
+                            <p>Creating innovative solutions with passion. Turning ideas into reality through code 🔥</p>
+                            <button class="btn" onclick="forkRepo()">Fork Repo</button>
+                            <br><br>
+                            <button class="btn" onclick="openRepo()">Open Repo</button>
+                            <div class="feature-highlight">
+                                Yasiya Md Github Repo
+                            </div>
+                        </div>
+                                                <div class="card">
+                            <div class="card-icon">🔐</div>
+                            <h3>Secure Pairing</h3>
+                            <p>Advanced security protocols ensure your data remains protected during the pairing process.</p>
+                            <button class="btn" onclick="openPair1()">Pair Device Server-1</button>
+                             <br><br>
+                            <button class="btn" onclick="openPair2()">Pair Device Server-2</button>
+                            <div class="feature-highlight">
+                                🛡️ End-to-end encrypted connection
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">🔗</div>
+                            <h3>Quick Connect</h3>
+                            <p>Connect your WhatsApp account instantly with QR code scanning. Secure and fast setup process.</p>
+                            <button class="btn" onclick="openQr1()">Scan QR Code Server-1</button>
+                             <br><br>
+                            <button class="btn" onclick="openQr2()">Scan QR Code Server-2</button>
+                            <div class="feature-highlight">
+                                ✨ Auto-reconnect on connection loss
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                </div>
+
+                <div id="deploy" class="tab-content">
+                    <div class="cards-grid">
+                        <div class="card">
+                            <div class="card-icon">☁️</div>
+                            <h3>Heroku Deployment</h3>
+                            <p>One-click deploy to Heroku platform. Automatic scaling and 24/7 uptime guaranteed.</p>
+                            <button class="btn" onclick="openheroku()">Deploy to Heroku</button>
+                            <div class="feature-highlight">
+                                ⚡ Create an account by paying USD 1
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">🚂</div>
+                            <h3>Railway Deployment</h3>
+                            <p>Deploy on Railway with ease. Modern infrastructure with automatic builds and deployments.</p>
+                            <button class="btn" onclick="openRail()">Deploy to Railway</button>
+                            <div class="feature-highlight">
+                                🔥 $5 free credit monthly + fast deployments
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">🎨</div>
+                            <h3>Render Deployment</h3>
+                            <p>Deploy to Render cloud platform. Free hosting with automatic SSL and global CDN.</p>
+                            <button class="btn" onclick="openRender()">Deploy to Render</button>
+                            <div class="feature-highlight">
+                                🌐 Free tier with 750 hours/month + SSL
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">🔄</div>
+                            <h3>Replit Cloud</h3>
+                            <p>Run directly on Replit cloud. Perfect for testing and development with instant deployment.</p>
+                            <button class="btn" onclick="openReplit()">Open in Replit</button>
+                            <div class="feature-highlight">
+                                💻 Browser-based coding environment
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">⚡</div>
+                            <h3>GitHub Actions CI/CD</h3>
+                            <p>Automated deployment pipeline with GitHub Actions. Auto-deploy on push with full CI/CD.</p>
+                            <button class="btn">Setup Workflow</button>
+                            <div class="feature-highlight">
+                                🔄 Auto-deploy to multiple platforms
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-icon">🏠</div>
+                            <h3>Free Deploy</h3>
+                            <p>Complete guide for local development setup. Full control over your bot environment.</p>
+                            <button class="btn btn-secondary">Setup Guide</button>
+                            <div class="feature-highlight">
+                                🛠️ Full customization and debugging support
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-icon">🏠</div>
+                            <h3>Local Setup</h3>
+                            <p>Complete guide for local development setup. Full control over your bot environment.</p>
+                            <button class="btn btn-secondary">Setup Guide</button>
+                            <div class="feature-highlight">
+                                🛠️ Full customization and debugging support
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="videos" class="tab-content">
+                    <div class="cards-grid">
+                        <div class="card">
+                            <div class="card-icon">📚</div>
+                            <h3>Setup Tutorial</h3>
+                            <p>Complete step-by-step guide for bot creation and deployment. Perfect for beginners.</p>
+                            <button class="btn">Watch Tutorial (Comming soon..)</button>
+                            <div class="feature-highlight">
+                                ⏱️ 15-minute comprehensive walkthrough
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-icon">🛠️</div>
+                            <h3>Troubleshooting</h3>
+                            <p>Common issues and solutions. Quick fixes for deployment and connection problems.</p>
+                            <button class="btn btn-secondary">(Comming soon..)</button>
+                            <div class="feature-highlight">
+                                🔧 Covers 90% of common issues
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="files" class="tab-content">
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-icon">📦</div>
+                        <h3>Complete Source Code</h3>
+                        <p>Download the complete project with all source files, documentation, and examples.</p>
+                        <button class="btn">Download ZIP</button>
+                        <div class="feature-highlight">
+                            📋 Includes setup instructions and examples
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon">🚀</div>
+                        <h3>GitHub Actions Workflows</h3>
+                        <p>Ready-to-use CI/CD workflows for automated testing and deployment to multiple platforms.</p>
+                        <button class="btn" onclick="downloadWorkflow()">Download Workflow</button>
+                        <div class="feature-highlight">
+                            ⚡ Deploy to Heroku, Railway, Render automatically
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page-section">
+
+            <!-- Dev Team Section -->
+                <div style="margin-top: 4rem;">
+                    <h3 style="text-align: center; font-size: 2rem; margin-bottom: 3rem; background: linear-gradient(45deg, #8b5cf6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">👨‍💻 Meet Our Dev Team</h3>
+                    
+                    <div class="dev-team-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                        <div class="dev-card" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 2rem; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden;">
+                            <div style="position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent);"></div>
+                            
+<div style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; margin: 0 auto 1.5rem;">
+  <img src="u/213310402?v=4" alt="Dark Yasiya" style="width: 100%; height: 100%; object-fit: cover;">
+</div>
+                            
+                            <h4 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: #ffffff;">Dark Yasiya</h4>
+                            <p style="color: #8b5cf6; font-weight: 600; margin-bottom: 1rem;">Lead Developer & Founder</p>
+                            <p style="color: #94a3b8; margin-bottom: 1.5rem; line-height: 1.6;">
+                                Expert in WhatsApp automation, AI integration, and full-stack development. 
+                                Passionate about creating innovative solutions for messaging platforms.
+                            </p>
+                            
+                            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem;">
+                                <a href="https://github.com/DarkYasiyaNew" target="_blank" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 8px; color: #94a3b8; transition: all 0.3s ease; text-decoration: none;">
+                                    🐙
+                                </a>
+                                <a href="https://wa.me/94762397654" target="_blank" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(37, 211, 102, 0.2); border-radius: 8px; color: #25d366; transition: all 0.3s ease; text-decoration: none;">
+                                    📱
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="dev-card" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 2rem; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden;">
+                            <div style="position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.5), transparent);"></div>
+                            
+                        <div style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; margin: 0 auto 1.5rem;">
+                         <img src="u/192448037?v=4" alt="Dark Yasiya" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            
+                            <h4 style="font-size: 1.5rem; margin-bottom: 0.5rem; color: #ffffff;">Sadeepa</h4>
+                            <p style="color: #06b6d4; font-weight: 600; margin-bottom: 1rem;">Senior Developer & Co-Founder</p>
+                            <p style="color: #94a3b8; margin-bottom: 1.5rem; line-height: 1.6;">
+                                Specialist in backend architecture, database optimization, and deployment automation. 
+                                Ensures scalability and performance of our platform.
+                            </p>
+                            
+                            <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem;">
+                                <a href="https://github.com/Sadeepa206" target="_blank" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.1); border-radius: 8px; color: #94a3b8; transition: all 0.3s ease; text-decoration: none;">
+                                    🐙
+                                </a>
+                                <a href="https://wa.me/94740952096" target="_blank" style="display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(37, 211, 102, 0.2); border-radius: 8px; color: #25d366; transition: all 0.3s ease; text-decoration: none;">
+                                    📱
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="about-content">
+                <h2>About WhatsApp Bot OFC</h2>
+                <p>
+                    Welcome to the future of WhatsApp automation. WhatsApp Bot OFC is a cutting-edge platform 
+                    designed to revolutionize how businesses and individuals interact through WhatsApp messaging. 
+                    Our platform combines powerful AI technology with user-friendly deployment options to create 
+                    the most comprehensive WhatsApp automation solution available today.
+                </p>
+                
+                <p>
+                    Founded by a team of passionate developers and digital innovators, we understand the challenges 
+                    of managing WhatsApp communications at scale. Whether you're a small business owner looking to 
+                    automate customer support or a developer wanting to build sophisticated chatbots, our platform 
+                    provides the tools and infrastructure you need to succeed.
+                </p>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon">🚀</div>
+                        <h3>Lightning Fast</h3>
+                        <p>Optimized for speed with sub-second response times and efficient resource usage.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="icon">🔒</div>
+                        <h3>Secure & Private</h3>
+                        <p>End-to-end encryption and advanced security protocols protect your data.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="icon">🤖</div>
+                        <h3>AI Powered</h3>
+                        <p>Advanced artificial intelligence for smart auto-replies and conversation management.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="icon">📱</div>
+                        <h3>Cross Platform</h3>
+                        <p>Deploy anywhere - Heroku, Railway, Render, Replit, or your own infrastructure.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="icon">🛠️</div>
+                        <h3>Easy Setup</h3>
+                        <p>One-click deployment with comprehensive documentation and video tutorials.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="icon">💸</div>
+                        <h3>Cost Effective</h3>
+                        <p>Free tier available with affordable pricing plans for businesses of all sizes.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="icon">🔧</div>
+                        <h3>Highly Customizable</h3>
+                        <p>Full source code access with extensive customization options and plugin support.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="icon">📈</div>
+                        <h3>Scalable</h3>
+                        <p>Handle thousands of messages per minute with automatic scaling capabilities.</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem; text-align: center;">
+                    <p style="font-size: 1.1rem; color: #94a3b8; margin-bottom: 2rem;">
+                        Ready to transform your WhatsApp experience? Join thousands of satisfied users who trust 
+                        WhatsApp Bot OFC for their automation needs.
+                    </p>
+                    <a href="#" class="btn" onclick="showPage('home')" style="display: inline-block; margin-right: 1rem;">
+                        Get Started Now
+                    </a>
+                    <a href="#" class="btn btn-secondary" onclick="showPage('contact')" style="display: inline-block;">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page-section">
+            <div class="contact-content">
+                <h2>Get In Touch</h2>
+                <p style="font-size: 1.1rem; color: #94a3b8; margin-bottom: 2rem;">
+                    Have questions, need support, or want to collaborate? We'd love to hear from you. 
+                    Our team is here to help you succeed with WhatsApp Bot automation.
+                </p>
+
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" required placeholder="What is this regarding?">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Tell us more about your inquiry or how we can help you..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="icon">📧</div>
+                        <h3>Email Support</h3>
+                        <p>yasiyaofc@gmail.com</p>
+                        <p style="font-size: 0.9rem; color: #64748b;">Response within 24 hours</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="icon">💬</div>
+                        <h3>WhatsApp Support</h3>
+                        <p>+94762614730</p>
+                        <p style="font-size: 0.9rem; color: #64748b;">Instant support via WhatsApp</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="icon">📚</div>
+                        <h3>Documentation</h3>
+                        <p>Comprehensive Guides</p>
+                        <p style="font-size: 0.9rem; color: #64748b;">Step-by-step tutorials</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="icon">🌐</div>
+                        <h3>Community</h3>
+                        <p>Join Our Discord</p>
+                        <p style="font-size: 0.9rem; color: #64748b;">Connect with other developers</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem; background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 12px; padding: 2rem; text-align: center;">
+                    <h3 style="color: #8b5cf6; margin-bottom: 1rem;">🚀 Enterprise Solutions</h3>
+                    <p style="margin-bottom: 1.5rem;">
+                        Need custom development, dedicated support, or enterprise-level features? 
+                        Our team offers tailored solutions for businesses with specific requirements.
+                    </p>
+                    <a href="#" class="btn" style="display: inline-block;">
+                        Contact Enterprise Sales
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+    </div>
+<!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>🤖 WhatsApp Bot OFC</h3>
+                    <p>The most advanced WhatsApp automation platform. Deploy powerful bots with ease and scale your messaging operations like never before.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="#" class="social-link">📷</a>
+                        <a href="#" class="social-link">💼</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="showPage('about')">About</a></li>
+                        <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Deployment</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Heroku Deploy</a></li>
+                        <li><a href="#">Railway Deploy</a></li>
+                        <li><a href="#">Render Deploy</a></li>
+                        <li><a href="#">Replit Setup</a></li>
+                        <li><a href="#">Local Installation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Video Tutorials</a></li>
+                        <li><a href="#">Community Forum</a></li>
+                        <li><a href="#">Bug Reports</a></li>
+                        <li><a href="#">Feature Requests</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 YASIYA-MD - All rights reserved. Made with ❤️ for the developer community.</p>
+            </div>
+        </div>
     </footer>
-  </div>
 
-  <script>
-    function sendEmail() {
-      const message = document.getElementById("message").value;
-      if (message.trim()) {
-        window.location.href = `mailto:ransaramax87@gmail.com?subject=Support Zara Assistant&body=${encodeURIComponent(message)}`;
-      } else {
-        alert("Please enter a message first.");
-      }
-    }
-  </script>
+    <script>
+        // Professional Loading Screen Script
+        window.addEventListener('load', function() {
+            // Simulate minimum loading time for better UX
+            setTimeout(function() {
+                const loadingScreen = document.getElementById('loadingScreen');
+                loadingScreen.classList.add('hidden');
+                
+                // Remove loading screen from DOM after animation completes
+                setTimeout(function() {
+                    loadingScreen.remove();
+                }, 800);
+            }, 2500); // 2.5 seconds minimum loading time
+        });
+
+        // Add your existing JavaScript functions here
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Remove active class from all tab buttons
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        function showPage(pageName) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Remove active class from all nav links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageName).classList.add('active');
+            
+            // Add active class to corresponding nav link
+            const activeLink = document.querySelector(`[data-page="${pageName}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+        // Add click event listeners to nav links
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageName = this.getAttribute('data-page');
+                    showPage(pageName);
+                });
+            });
+        });
+
+    </script>
+    <script src="./script/script.js"></script>
+    <script src="./script/disabled.js"></script>
 </body>
 </html>
