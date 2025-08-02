@@ -104,13 +104,14 @@
 
 .movie-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 20px;
       padding: 0 20px 30px;
 }
 
-.movie-card {
-      width: 185px;
+.movie-card,
+.tv-card {
+      width: 120px;
       background-color: #111;
       border-radius: 8px;
       overflow: hidden;
@@ -118,24 +119,28 @@
       transition: transform 0.3s ease;
 }
 
-.movie-card:hover {
+.movie-card:hover,
+.tv-card:hover {
       transform: scale(1.05);
 }
 
-.movie-card img {
-      width: 185px;
-      height: 278px;
+.movie-card img,
+.tv-card img {
+      width: 120px;
+      height: 180px;
       object-fit: cover;
       display: block;
 }
 
-.movie-info {
-      padding: 10px;
+.movie-info,
+.tv-info {
+      padding: 8px;
 }
 
-.movie-info h3 {
-      font-size: 14px;
-      margin-bottom: 6px;
+.movie-info h3,
+.tv-info h4 {
+      font-size: 13px;
+      margin-bottom: 4px;
       color: #00ffff;
 }
 
@@ -143,16 +148,17 @@
       display: inline-block;
       background-color: #333;
       color: #fff;
-      font-size: 11px;
-      padding: 4px 6px;
+      font-size: 10px;
+      padding: 3px 5px;
       margin: 2px 4px 2px 0;
       border-radius: 4px;
 }
 
-.release-date {
-      font-size: 12px;
+.release-date,
+.tv-info p {
+      font-size: 11px;
       color: #ccc;
-      margin-top: 6px;
+      margin-top: 4px;
 }
 
 .tv-slider {
@@ -161,41 +167,6 @@
       gap: 15px;
       padding: 0 20px 30px;
       scroll-behavior: smooth;
-}
-
-.tv-card {
-      min-width: 185px;
-      background-color: #111;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 0 10px #00ffff;
-      transition: transform 0.3s ease;
-}
-
-.tv-card:hover {
-      transform: scale(1.05);
-}
-
-.tv-card img {
-      width: 185px;
-      height: 278px;
-      object-fit: cover;
-      display: block;
-}
-
-.tv-info {
-      padding: 10px;
-}
-
-.tv-info h4 {
-      font-size: 13px;
-      color: #ffcc00;
-      margin-bottom: 4px;
-}
-
-.tv-info p {
-      font-size: 11px;
-      color: #ccc;
 }
 
     footer {
@@ -239,7 +210,6 @@
 .tv-card {
         width: 100%;
 }
-
 .movie-card img,
 .tv-card img {
         width: 100%;
