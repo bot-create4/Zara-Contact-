@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CinemaFlix</title>
   <style>
     /* Reset & Base */
@@ -26,9 +26,10 @@
     /* Header */
     header {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 30px;
+      padding: 15px 20px;
       background-color: #111;
       box-shadow: 0 0 10px #ff0055;
       position: sticky;
@@ -37,18 +38,28 @@
 }
 
 .logo {
-      height: 50px;
+      height: 45px;
+}
+
+.menu-toggle {
+      display: none;
+      font-size: 24px;
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
 }
 
     nav {
       flex: 1;
-      margin-left: 30px;
+      margin-left: 20px;
 }
 
     nav ul {
       list-style: none;
       display: flex;
-      gap: 20px;
+      gap: 15px;
+      flex-wrap: wrap;
 }
 
     nav li {
@@ -67,6 +78,7 @@
       background-color: #222;
       border-radius: 20px;
       padding: 5px 10px;
+      margin-top: 10px;
 }
 
 .search-box input {
@@ -75,6 +87,7 @@
       color: #fff;
       padding: 5px;
       outline: none;
+      width: 100px;
 }
 
 .search-box::after {
@@ -85,20 +98,19 @@
 
     /* Section Titles */
 .section-title {
-      font-size: 22px;
+      font-size: 20px;
       color: #ff0055;
-      margin: 40px 30px 20px;
+      margin: 30px 20px 15px;
       border-left: 5px solid crimson;
-      padding-left: 15px;
+      padding-left: 12px;
 }
 
     /* Movie Grid */
 .movie-grid {
       display: grid;
-      grid-template-columns: repeat(5, 185px);
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 20px;
-      justify-content: center;
-      padding: 0 30px 40px;
+      padding: 0 20px 30px;
 }
 
 .movie-card {
@@ -124,7 +136,7 @@
 }
 
 .movie-info h3 {
-      font-size: 15px;
+      font-size: 14px;
       margin-bottom: 6px;
       color: #00ffff;
 }
@@ -133,14 +145,14 @@
       display: inline-block;
       background-color: #333;
       color: #fff;
-      font-size: 12px;
-      padding: 4px 8px;
+      font-size: 11px;
+      padding: 4px 6px;
       margin: 2px 4px 2px 0;
       border-radius: 4px;
 }
 
 .release-date {
-      font-size: 13px;
+      font-size: 12px;
       color: #ccc;
       margin-top: 6px;
 }
@@ -149,13 +161,13 @@
 .tv-slider {
       display: flex;
       overflow-x: auto;
-      gap: 20px;
-      padding: 0 30px 40px;
+      gap: 15px;
+      padding: 0 20px 30px;
       scroll-behavior: smooth;
 }
 
 .tv-card {
-      min-width: 185px;
+      min-width: 160px;
       background-color: #111;
       border-radius: 8px;
       overflow: hidden;
@@ -178,13 +190,13 @@
 }
 
 .tv-info h4 {
-      font-size: 14px;
+      font-size: 13px;
       color: #ffcc00;
       margin-bottom: 4px;
 }
 
 .tv-info p {
-      font-size: 12px;
+      font-size: 11px;
       color: #ccc;
 }
 
@@ -194,6 +206,38 @@
       padding: 20px;
       background-color: #1a1a1a;
       color: #888;
+      font-size: 13px;
+}
+
+    /* Responsive Navigation */
+    @media (max-width: 768px) {
+.menu-toggle {
+        display: block;
+}
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+}
+
+      nav ul.active {
+        display: flex;
+}
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+}
+
+.logo {
+        margin-bottom: 10px;
+}
+
+.search-box input {
+        width: 80px;
+}
 }
   </style>
 </head>
@@ -201,9 +245,10 @@
 
   <!-- Header -->
   <header>
-    <img src="https://i.ibb.co/m505nL8H/j0-BYQshy10.png" alt="CinemaFlix Logo" class="logo">
+    <img src="https://i.ibb.co/m505nL8H/j0-BYQshy10.png" alt="CinemaFlix Logo" class="logo" />
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <nav>
-      <ul>
+      <ul id="nav-links">
         <li><a href="#">All Movies</a></li>
         <li><a href="#">TV Shows</a></li>
         <li><a href="#">Languages</a></li>
@@ -213,16 +258,15 @@
       </ul>
     </nav>
     <div class="search-box">
-      <input type="text" placeholder="Search...">
+      <input type="text" placeholder="Search..." />
     </div>
   </header>
 
   <!-- New Movie Updates -->
   <h2 class="section-title">🔥 New Movie Updates</h2>
   <div class="movie-grid">
-    <!-- Movie Card -->
     <div class="movie-card">
-      <img src="https://cinesubz.lk/wp-content/uploads/2025/07/28-Years-Later-2025-WEB-2-185x278.jpg" alt="28 Years Later Poster">
+      <img src="https://cinesubz.lk/wp-content/uploads/2025/07/28-Years-Later-2025-WEB-2-185x278.jpg" alt="28 Years Later Poster" />
       <div class="movie-info">
         <h3>28 Years Later</h3>
         <span class="tag">WEBRip</span>
@@ -230,27 +274,32 @@
         <p class="release-date">📅 Jun. 18, 2025</p>
       </div>
     </div>
-    <!-- Add more movie cards here -->
   </div>
 
   <!-- TV Shows Section -->
   <h2 class="section-title">📺 TV Shows</h2>
   <div class="tv-slider">
-    <!-- TV Show Card -->
     <div class="tv-card">
-      <img src="https://cinesubz.lk/wp-content/uploads/2025/07/28-Years-Later-2025-WEB-2-185x278.jpg" alt="TV Show Poster">
+      <img src="https://cinesubz.lk/wp-content/uploads/2025/07/28-Years-Later-2025-WEB-2-185x278.jpg" alt="TV Show Poster" />
       <div class="tv-info">
         <h4>Zombie Nation</h4>
         <p>Season 3 • Jul 2025</p>
       </div>
     </div>
-    <!-- Add more TV show cards here -->
   </div>
 
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 CinemaFlix. All rights reserved.</p>
   </footer>
+
+  <!-- JavaScript for Hamburger Menu -->
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('nav-links');
+      navLinks.classList.toggle('active');
+}
+  </script>
 
 </body>
 </html>
