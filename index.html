@@ -1,130 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ransara Devnath – Creator of RansGPT</title>
-  <script>
-    // Auto-updating age
-    function calculateAge() {
-      const birthDate = new Date("2010-11-28");
-      const today = new Date();
-      let age = today.getFullYear() - birthDate.getFullYear();
-      const m = today.getMonth() - birthDate.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-}
-      document.getElementById("age").textContent = age + " years old";
-}
-    window.onload = calculateAge;
-  </script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CinemaFlix</title>
   <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+}
+
     body {
-      background: linear-gradient(135deg, #6A0DAD, #0F172A);
-      font-family: 'Poppins', sans-serif;
+      background-color: #0d0d0d;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
 }
-.glow {
-      text-shadow: 0 0 10px #8B5CF6, 0 0 20px #6A0DAD;
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: linear-gradient(to right, #1a1a1a, #000);
+      box-shadow: 0 0 10px #ff0055;
 }
-.card {
-      background-color: rgba(15, 23, 42, 0.8);
-      border: 1px solid #8B5CF6;
-      box-shadow: 0 0 10px #6A0DAD;
+
+.logo {
+      height: 50px;
 }
-.btn {
-      transition: all 0.3s ease;
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
 }
-.btn:hover {
-      box-shadow: 0 0 10px #A855F7;
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+}
+
+    nav a:hover {
+      color: #ff0055;
+}
+
+    /* Hero Section */
+.hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: radial-gradient(circle, #1a1a1a, #000);
+}
+
+.hero h1 {
+      font-size: 36px;
+      color: #00ffff;
+      margin-bottom: 10px;
+}
+
+.hero p {
+      font-size: 18px;
+      color: #ccc;
+}
+
+    /* Movie Section */
+.movie-section {
+      padding: 40px 20px;
+}
+
+.movie-section h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #ff0055;
+      text-align: center;
+}
+
+.movie-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+}
+
+    /* Movie Card */
+.movie-card {
+      width: 185px;
+      background-color: #111;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 10px #ff0055;
+      transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
       transform: scale(1.05);
+}
+
+.movie-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+}
+
+.movie-info {
+      padding: 10px;
+}
+
+.movie-info h3 {
+      font-size: 16px;
+      margin: 5px 0;
+      color: #00ffff;
+}
+
+.movie-info p {
+      font-size: 14px;
+      margin: 2px 0;
+}
+
+.movie-info button {
+      margin-top: 8px;
+      padding: 6px 12px;
+      background-color: #ff0055;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+}
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1a1a1a;
+      color: #888;
+}
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+}
+
+.movie-grid {
+        flex-direction: column;
+        align-items: center;
+}
+
+.movie-card {
+        width: 90%;
+}
 }
   </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center px-4 py-8 text-white">
+<body>
+
+  <!-- Header -->
+  <header>
+    <img src="https://i.ibb.co/m505nL8H/j0-BYQshy10.png" alt="CinemaFlix Logo" class="logo">
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Movies</a></li>
+        <li><a href="#">TV Shows</a></li>
+        <li><a href="#">Genres</a></li>
+        <li><a href="#">Login</a></li>
+      </ul>
+    </nav>
+  </header>
 
   <!-- Hero Section -->
-  <section class="text-center mb-12">
-    <img src="https://i.ibb.co/KBCtVJ0/tm-Tq-ESrvf1.jpg" alt="Ransara Devnath"
-         class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-purple-500 shadow-lg" />
-    <h1 class="text-4xl font-bold glow">Hi, I'm Ransara Devnath 👋</h1>
-    <p id="age" class="text-xl mt-2 glow"></p>
-    <p class="mt-2 text-lg">Software Developer | Programmer | Creator of RansGPT</p>
-    <div class="mt-6 flex gap-4 justify-center">
-      <a href="https://ransgpt.netlify.app" target="_blank"
-         class="btn bg-purple-600 text-white px-4 py-2 rounded glow">
-        🚀 Try RansGPT
-      </a>
-      <a href="#projects" class="btn bg-purple-800 text-white px-4 py-2 rounded glow">
-        📂 View Projects
-      </a>
-    </div>
+  <section class="hero">
+    <h1>Welcome to CinemaFlix</h1>
+    <p>Stream the latest movies and shows in stunning quality</p>
   </section>
 
-  <!-- About Section -->
-  <section class="max-w-2xl text-center mb-12">
-    <h2 class="text-2xl font-semibold mb-4 glow">About Me</h2>
-    <p class="text-gray-300">
-      I'm a passionate young developer from Sri Lanka, building open source tools and AI assistants like RansGPT.
-      I love coding in JavaScript, Python, and exploring new tech every day.
-    </p>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="max-w-4xl w-full mb-12">
-    <h2 class="text-2xl font-semibold mb-6 text-center glow">Open Source Projects</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <!-- Project Card -->
-      <div class="card p-6 rounded-lg">
-        <h3 class="text-xl text-purple-300 font-bold mb-2">RansGPT</h3>
-        <p class="text-gray-300 mb-4">An AI assistant built using JavaScript and GPT logic.</p>
-        <div class="flex gap-4">
-          <a href="https://github.com/ransara-devnath/RansGPT" target="_blank"
-             class="btn bg-purple-600 text-white px-4 py-2 rounded">
-            🐙 GitHub
-          </a>
-          <a href="https://ransgpt.netlify.app" target="_blank"
-             class="btn bg-purple-800 text-white px-4 py-2 rounded">
-            🚀 Demo
-          </a>
+  <!-- Movie Cards Section -->
+  <section class="movie-section">
+    <h2>🔥 Latest Releases</h2>
+    <div class="movie-grid">
+      <!-- Movie Card -->
+      <div class="movie-card">
+        <img src="https://cinesubz.lk/wp-content/uploads/2025/07/28-Years-Later-2025-WEB-2-185x278.jpg" alt="28 Years Later Poster">
+        <div class="movie-info">
+          <h3>28 Years Later</h3>
+          <p>📽️ Format: WEBRip</p>
+          <p>🗣️ Language: English</p>
+          <p>📅 Release Date: June 18, 2025</p>
+          <button>Watch Now</button>
         </div>
       </div>
-      <!-- Add more project cards here -->
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="text-center mb-12">
-    <h2 class="text-2xl font-semibold mb-4 glow">Contact Me</h2>
-    <div class="flex flex-col items-center gap-6 text-lg">
-
-      <!-- GitHub -->
-      <a href="https://github.com/ransara-devnath" target="_blank"
-         class="flex items-center gap-3 hover:text-purple-400 transition duration-300 glow">
-        <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="w-6 h-6" />
-        GitHub: github.com/ransara-devnath
-      </a>
-
-      <!-- Email -->
-      <a href="mailto:ransaramax87@gmail.com"
-         class="flex items-center gap-3 hover:text-purple-400 transition duration-300 glow">
-        <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" class="w-6 h-6" />
-        Email: ransaramax87@gmail.com
-      </a>
-
-      <!-- WhatsApp -->
-      <a href="https://wa.me/message/XQZHYHBQ3E47I1" target="_blank"
-         class="flex items-center gap-3 hover:text-purple-400 transition duration-300 glow">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" class="w-6 h-6" />
-        WhatsApp: Chat with me
-      </a>
-
+      <!-- Add more movie cards here -->
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="text-center text-sm text-gray-400 mt-8">
-    © 2025 Ransara Devnath. All rights reserved.
+  <footer>
+    <p>&copy; 2025 CinemaFlix. All rights reserved.</p>
   </footer>
 
 </body>
