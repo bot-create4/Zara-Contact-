@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CinemaFlix</title>
   <style>
-    /* Reset & Base */
     * {
       margin: 0;
       padding: 0;
@@ -23,7 +22,6 @@
       color: inherit;
 }
 
-    /* Header */
     header {
       display: flex;
       flex-wrap: wrap;
@@ -96,7 +94,6 @@
       color: #ccc;
 }
 
-    /* Section Titles */
 .section-title {
       font-size: 20px;
       color: #ff0055;
@@ -105,15 +102,15 @@
       padding-left: 12px;
 }
 
-    /* Movie Grid */
 .movie-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
       gap: 20px;
       padding: 0 20px 30px;
 }
 
 .movie-card {
+      width: 185px;
       background-color: #111;
       border-radius: 8px;
       overflow: hidden;
@@ -126,8 +123,9 @@
 }
 
 .movie-card img {
-      width: 100%;
-      height: auto;
+      width: 185px;
+      height: 278px;
+      object-fit: cover;
       display: block;
 }
 
@@ -157,7 +155,6 @@
       margin-top: 6px;
 }
 
-    /* TV Show Slider */
 .tv-slider {
       display: flex;
       overflow-x: auto;
@@ -167,7 +164,7 @@
 }
 
 .tv-card {
-      min-width: 160px;
+      min-width: 185px;
       background-color: #111;
       border-radius: 8px;
       overflow: hidden;
@@ -180,8 +177,9 @@
 }
 
 .tv-card img {
-      width: 100%;
-      height: auto;
+      width: 185px;
+      height: 278px;
+      object-fit: cover;
       display: block;
 }
 
@@ -200,7 +198,6 @@
       color: #ccc;
 }
 
-    /* Footer */
     footer {
       text-align: center;
       padding: 20px;
@@ -209,7 +206,6 @@
       font-size: 13px;
 }
 
-    /* Responsive Navigation */
     @media (max-width: 768px) {
 .menu-toggle {
         display: block;
@@ -237,6 +233,17 @@
 
 .search-box input {
         width: 80px;
+}
+
+.movie-card,
+.tv-card {
+        width: 100%;
+}
+
+.movie-card img,
+.tv-card img {
+        width: 100%;
+        height: auto;
 }
 }
   </style>
@@ -274,6 +281,7 @@
         <p class="release-date">📅 Jun. 18, 2025</p>
       </div>
     </div>
+    <!-- Add more movie cards here -->
   </div>
 
   <!-- TV Shows Section -->
@@ -286,6 +294,7 @@
         <p>Season 3 • Jul 2025</p>
       </div>
     </div>
+    <!-- Add more TV show cards here -->
   </div>
 
   <!-- Footer -->
