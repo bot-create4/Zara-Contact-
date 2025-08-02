@@ -18,18 +18,31 @@
       font-family: 'Segoe UI', sans-serif;
 }
 
+    a {
+      text-decoration: none;
+      color: inherit;
+}
+
     /* Header */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px;
-      background: linear-gradient(to right, #1a1a1a, #000);
+      padding: 15px 30px;
+      background-color: #111;
       box-shadow: 0 0 10px #ff0055;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
 }
 
 .logo {
       height: 50px;
+}
+
+    nav {
+      flex: 1;
+      margin-left: 30px;
 }
 
     nav ul {
@@ -38,57 +51,57 @@
       gap: 20px;
 }
 
-    nav a {
-      color: #fff;
-      text-decoration: none;
+    nav li {
       font-weight: bold;
+      color: #fff;
       transition: color 0.3s;
 }
 
-    nav a:hover {
+    nav li:hover {
       color: #ff0055;
 }
 
-    /* Hero Section */
-.hero {
-      text-align: center;
-      padding: 60px 20px;
-      background: radial-gradient(circle, #1a1a1a, #000);
+.search-box {
+      display: flex;
+      align-items: center;
+      background-color: #222;
+      border-radius: 20px;
+      padding: 5px 10px;
 }
 
-.hero h1 {
-      font-size: 36px;
-      color: #00ffff;
-      margin-bottom: 10px;
+.search-box input {
+      background: transparent;
+      border: none;
+      color: #fff;
+      padding: 5px;
+      outline: none;
 }
 
-.hero p {
-      font-size: 18px;
+.search-box::after {
+      content: "🔍";
+      margin-left: 8px;
       color: #ccc;
 }
 
-    /* Movie Section */
-.movie-section {
-      padding: 40px 20px;
-}
-
-.movie-section h2 {
-      font-size: 24px;
-      margin-bottom: 20px;
+    /* Section Titles */
+.section-title {
+      font-size: 22px;
       color: #ff0055;
-      text-align: center;
+      margin: 40px 30px 20px;
+      border-left: 5px solid crimson;
+      padding-left: 15px;
 }
 
+    /* Movie Grid */
 .movie-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(5, 185px);
       gap: 20px;
+      justify-content: center;
+      padding: 0 30px 40px;
 }
 
-    /* Movie Card */
 .movie-card {
-      width: 185px;
       background-color: #111;
       border-radius: 8px;
       overflow: hidden;
@@ -111,24 +124,68 @@
 }
 
 .movie-info h3 {
-      font-size: 16px;
-      margin: 5px 0;
+      font-size: 15px;
+      margin-bottom: 6px;
       color: #00ffff;
 }
 
-.movie-info p {
-      font-size: 14px;
-      margin: 2px 0;
+.tag {
+      display: inline-block;
+      background-color: #333;
+      color: #fff;
+      font-size: 12px;
+      padding: 4px 8px;
+      margin: 2px 4px 2px 0;
+      border-radius: 4px;
 }
 
-.movie-info button {
-      margin-top: 8px;
-      padding: 6px 12px;
-      background-color: #ff0055;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
+.release-date {
+      font-size: 13px;
+      color: #ccc;
+      margin-top: 6px;
+}
+
+    /* TV Show Slider */
+.tv-slider {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 0 30px 40px;
+      scroll-behavior: smooth;
+}
+
+.tv-card {
+      min-width: 185px;
+      background-color: #111;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 0 10px #00ffff;
+      transition: transform 0.3s ease;
+}
+
+.tv-card:hover {
+      transform: scale(1.05);
+}
+
+.tv-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+}
+
+.tv-info {
+      padding: 10px;
+}
+
+.tv-info h4 {
+      font-size: 14px;
+      color: #ffcc00;
+      margin-bottom: 4px;
+}
+
+.tv-info p {
+      font-size: 12px;
+      color: #ccc;
 }
 
     /* Footer */
@@ -137,23 +194,6 @@
       padding: 20px;
       background-color: #1a1a1a;
       color: #888;
-}
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-        gap: 10px;
-}
-
-.movie-grid {
-        flex-direction: column;
-        align-items: center;
-}
-
-.movie-card {
-        width: 90%;
-}
 }
   </style>
 </head>
@@ -164,39 +204,48 @@
     <img src="https://i.ibb.co/m505nL8H/j0-BYQshy10.png" alt="CinemaFlix Logo" class="logo">
     <nav>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Movies</a></li>
+        <li><a href="#">All Movies</a></li>
         <li><a href="#">TV Shows</a></li>
+        <li><a href="#">Languages</a></li>
         <li><a href="#">Genres</a></li>
-        <li><a href="#">Login</a></li>
+        <li><a href="#">Years</a></li>
+        <li><a href="#">Collections</a></li>
       </ul>
     </nav>
+    <div class="search-box">
+      <input type="text" placeholder="Search...">
+    </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>Welcome to CinemaFlix</h1>
-    <p>Stream the latest movies and shows in stunning quality</p>
-  </section>
-
-  <!-- Movie Cards Section -->
-  <section class="movie-section">
-    <h2>🔥 Latest Releases</h2>
-    <div class="movie-grid">
-      <!-- Movie Card -->
-      <div class="movie-card">
-        <img src="https://cinesubz.lk/wp-content/uploads/2025/07/28-Years-Later-2025-WEB-2-185x278.jpg" alt="28 Years Later Poster">
-        <div class="movie-info">
-          <h3>28 Years Later</h3>
-          <p>📽️ Format: WEBRip</p>
-          <p>🗣️ Language: English</p>
-          <p>📅 Release Date: June 18, 2025</p>
-          <button>Watch Now</button>
-        </div>
+  <!-- New Movie Updates -->
+  <h2 class="section-title">🔥 New Movie Updates</h2>
+  <div class="movie-grid">
+    <!-- Movie Card -->
+    <div class="movie-card">
+      <img src="https://cinesubz.lk/wp-content/uploads/2025/07/28-Years-Later-2025-WEB-2-185x278.jpg" alt="28 Years Later Poster">
+      <div class="movie-info">
+        <h3>28 Years Later</h3>
+        <span class="tag">WEBRip</span>
+        <span class="tag">English</span>
+        <p class="release-date">📅 Jun. 18, 2025</p>
       </div>
-      <!-- Add more movie cards here -->
     </div>
-  </section>
+    <!-- Add more movie cards here -->
+  </div>
+
+  <!-- TV Shows Section -->
+  <h2 class="section-title">📺 TV Shows</h2>
+  <div class="tv-slider">
+    <!-- TV Show Card -->
+    <div class="tv-card">
+      <img src="https://cinesubz.lk/wp-content/uploads/2025/07/28-Years-Later-2025-WEB-2-185x278.jpg" alt="TV Show Poster">
+      <div class="tv-info">
+        <h4>Zombie Nation</h4>
+        <p>Season 3 • Jul 2025</p>
+      </div>
+    </div>
+    <!-- Add more TV show cards here -->
+  </div>
 
   <!-- Footer -->
   <footer>
