@@ -1,284 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CinemaFlix</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-}
-
-    body {
-      background-color: #0d0d0d;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
-}
-
-    a {
-      text-decoration: none;
-      color: inherit;
-}
-
-    header {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-      background-color: #111;
-      box-shadow: 0 0 10px #ff0055;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-}
-
-.logo {
-      height: 45px;
-}
-
-.menu-toggle {
-      display: none;
-      font-size: 24px;
-      background: none;
-      border: none;
-      color: #fff;
-      cursor: pointer;
-}
-
-    nav {
-      flex: 1;
-      margin-left: 20px;
-}
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-}
-
-    nav li {
-      font-weight: bold;
-      color: #fff;
-      transition: color 0.3s;
-}
-
-    nav li:hover {
-      color: #ff0055;
-}
-
-.search-box {
-      display: flex;
-      align-items: center;
-      background-color: #222;
-      border-radius: 20px;
-      padding: 5px 10px;
-      margin-top: 10px;
-}
-
-.search-box input {
-      background: transparent;
-      border: none;
-      color: #fff;
-      padding: 5px;
-      outline: none;
-      width: 100px;
-}
-
-.search-box::after {
-      content: "🔍";
-      margin-left: 8px;
-      color: #ccc;
-}
-
-.section-title {
-      font-size: 20px;
-      color: #ff0055;
-      margin: 30px 20px 15px;
-      border-left: 5px solid crimson;
-      padding-left: 12px;
-}
-
-.movie-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 20px;
-      padding: 0 20px 30px;
-}
-
-.movie-card,
-.tv-card {
-      width: 120px;
-      background-color: #111;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 0 10px #ff0055;
-      transition: transform 0.3s ease;
-}
-
-.movie-card:hover,
-.tv-card:hover {
-      transform: scale(1.05);
-}
-
-.movie-card img,
-.tv-card img {
-      width: 120px;
-      height: 180px;
-      object-fit: cover;
-      display: block;
-}
-
-.movie-info,
-.tv-info {
-      padding: 8px;
-}
-
-.movie-info h3,
-.tv-info h4 {
-      font-size: 13px;
-      margin-bottom: 4px;
-      color: #00ffff;
-}
-
-.tag {
-      display: inline-block;
-      background-color: #333;
-      color: #fff;
-      font-size: 10px;
-      padding: 3px 5px;
-      margin: 2px 4px 2px 0;
-      border-radius: 4px;
-}
-
-.release-date,
-.tv-info p {
-      font-size: 11px;
-      color: #ccc;
-      margin-top: 4px;
-}
-
-.tv-slider {
-      display: flex;
-      overflow-x: auto;
-      gap: 15px;
-      padding: 0 20px 30px;
-      scroll-behavior: smooth;
-}
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #1a1a1a;
-      color: #888;
-      font-size: 13px;
-}
-
-    @media (max-width: 768px) {
-.menu-toggle {
-        display: block;
-}
-
-      nav ul {
-        display: none;
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 10px;
-}
-
-      nav ul.active {
-        display: flex;
-}
-
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-}
-
-.logo {
-        margin-bottom: 10px;
-}
-
-.search-box input {
-        width: 80px;
-}
-
-.movie-card,
-.tv-card {
-        width: 100%;
-}
-.movie-card img,
-.tv-card img {
-        width: 100%;
-        height: auto;
-}
-}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Portfolio Website</title>
 </head>
 <body>
+    <header>
+        <a href="#" class="logo">Alex</a>
 
-  <!-- Header -->
-  <header>
-    <img src="https://i.ibb.co/m505nL8H/j0-BYQshy10.png" alt="CinemaFlix Logo" class="logo" />
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    <nav>
-      <ul id="nav-links">
-        <li><a href="#">All Movies</a></li>
-        <li><a href="#">TV Shows</a></li>
-        <li><a href="#">Languages</a></li>
-        <li><a href="#">Genres</a></li>
-        <li><a href="#">Years</a></li>
-        <li><a href="#">Collections</a></li>
-      </ul>
-    </nav>
-    <div class="search-box">
-      <input type="text" placeholder="Search..." />
-    </div>
-  </header>
-
-  <!-- New Movie Updates -->
-  <h2 class="section-title">🔥 New Movie Updates</h2>
-  <div class="movie-grid">
-    <div class="movie-card">
-      <img src="https://cinesubz.lk/wp-content/uploads/2025/07/28-Years-Later-2025-WEB-2-185x278.jpg" alt="28 Years Later Poster" />
-      <div class="movie-info">
-        <h3>28 Years Later</h3>
-        <span class="tag">WEBRip</span>
-        <span class="tag">English</span>
-        <p class="release-date">📅 Jun. 18, 2025</p>
-      </div>
-    </div>
-    <!-- Add more movie cards here -->
-  </div>
-
-  <!-- TV Shows Section -->
-  <h2 class="section-title">📺 TV Shows</h2>
-  <div class="tv-slider">
-    <div class="tv-card">
-      <img src="https://cinesubz.lk/wp-content/uploads/2025/07/28-Years-Later-2025-WEB-2-185x278.jpg" alt="TV Show Poster" />
-      <div class="tv-info">
-        <h4>Zombie Nation</h4>
-        <p>Season 3 • Jul 2025</p>
-      </div>
-    </div>
-    <!-- Add more TV show cards here -->
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 CinemaFlix. All rights reserved.</p>
-  </footer>
-
-  <!-- JavaScript for Hamburger Menu -->
-  <script>
-    function toggleMenu() {
-      const navLinks = document.getElementById('nav-links');
-      navLinks.classList.toggle('active');
-}
-  </script>
-
+        <nav>
+            <a href="#" class="active"> Home</a>
+            <a href="#" >Services</a>
+            <a href="#" >Skills</a>
+            <a href="#" >Education</a>
+            <a href="#" >Experience</a>
+            <a href="#" >Contact</a>
+        </nav>
+    </header>
+    <section class="home">
+        <div class="home-img">
+            <img src="main.jpg" alt="">
+        </div>
+        <div class="home-content">
+            <h1>Hi, It's <span>Alex</span></h1>
+            <h3 class="typing-text">I'm a <span></span></h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus labore dolores esse. Odit similique doloribus tenetur doloremque, sunt commodi in ipsa repudiandae debitis deleniti blanditiis quibusdam quaerat neque asperiores ea.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <a href="#" class="btn">Hire me</a>
+        </div>
+    </section>
 </body>
 </html>
