@@ -4,15 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ransara Devnath | Portfolio</title>
+
+  <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
+
+  <!-- AOS Animation Library -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- Header -->
   <header>
     <a href="#" class="logo">Ransara Devnath</a>
-    <nav>
-      <a href="#" style="--delay: 0.1s;">Home</a>
+    <nav class="nav-links">
+      <a href="#" class="active" style="--delay: 0.1s;">Home</a>
       <a href="#" style="--delay: 0.2s;">Services</a>
       <a href="#" style="--delay: 0.3s;">Skills</a>
       <a href="#" style="--delay: 0.4s;">Education</a>
@@ -21,31 +29,42 @@
     </nav>
   </header>
 
-  <section class="home">
-    <div class="home-img" data-aos="fade-right">
-      <img src="main.jpg" alt="Ransara Devnath" />
-    </div>
-    <div class="home-content fade-in" data-aos="fade-up">
-      <h1>Hi, It's <span>Ransara Devnath</span></h1>
-      <h3 class="typing-text">I'm a <span></span></h3>
-      <p>
-        Welcome to my portfolio! I'm passionate about building creative digital experiences and solving real-world problems through code and design.
-      </p>
-      <div class="social-icons">
-        <a href="https://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="https://github.com/ransara-devnath" target="_blank"><i class="fa-brands fa-github"></i></a>
-        <a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://wa.me/message/XQZHYHBQ3E47I1" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+  <!-- Main Content -->
+  <main>
+    <section class="home">
+      <!-- Profile Image -->
+      <div class="home-img" data-aos="fade-right">
+        <img src="main.jpg" alt="Ransara Devnath" />
       </div>
-      <a href="#" class="btn">Hire me</a>
-    </div>
-  </section>
 
+      <!-- Text Content -->
+      <div class="home-content fade-in" data-aos="fade-up">
+        <h1>Hi, It's <span>Ransara Devnath</span></h1>
+        <h3 class="typing-text">I'm a <span></span></h3>
+        <p>
+          Welcome to my portfolio! I'm passionate about building creative digital experiences and solving real-world problems through code and design.
+        </p>
+
+        <!-- Social Icons -->
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://github.com/ransara-devnath" target="_blank"><i class="fa-brands fa-github"></i></a>
+          <a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://wa.me/message/XQZHYHBQ3E47I1" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+
+        <!-- Call to Action -->
+        <a href="#" class="btn">Hire me</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
   <footer>
     <p>© 2025 Ransara Devnath. All rights reserved.</p>
   </footer>
 
+  <!-- AOS Animation Script -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init();
