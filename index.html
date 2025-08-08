@@ -3,236 +3,87 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DreamForge AI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #0f0f0f;
-      color: #e5e5e5;
-      transition: background-color 0.5s ease, color 0.5s ease;
-      opacity: 0;
-}
-    body.loaded {
-      opacity: 1;
-}
-    header {
-      text-align: center;
-      padding: 20px;
-      font-size: 1.5rem;
-      color: #a855f7;
-      animation: float 3s ease-in-out infinite;
-}
-.container {
-      max-width: 800px;
-      margin: auto;
-      padding: 20px;
-}
-.card {
-      background-color: #1f1f1f;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 30px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 15px #3b82f6;
-}
-    h2 {
-      color: #a855f7;
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: revealText 1s ease forwards;
-}
-    input, select {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 8px;
-      border: none;
-      background-color: #2a2a2a;
-      color: white;
-}
-    button {
-      background-color: #a855f7;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #a855f7;
-      transition: all 0.3s ease;
-      cursor: pointer;
-}
-    button:hover {
-      box-shadow: 0 0 20px #a855f7, 0 0 40px #a855f7;
-      transform: scale(1.05);
-}
-.loader {
-      border: 4px solid #3b82f6;
-      border-top: 4px solid #a855f7;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite, pulseGlow 1.5s ease-in-out infinite;
-      margin: 20px auto;
-      display: none;
-}
-    @keyframes spin {
-      0% { transform: rotate(0deg);}
-      100% { transform: rotate(360deg);}
-}
-    @keyframes pulseGlow {
-      0% { box-shadow: 0 0 5px #a855f7;}
-      50% { box-shadow: 0 0 20px #a855f7;}
-      100% { box-shadow: 0 0 5px #a855f7;}
-}
-    @keyframes float {
-      0% { transform: translateY(0);}
-      50% { transform: translateY(-5px);}
-      100% { transform: translateY(0);}
-}
-    @keyframes revealText {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-}
-}
-.result-panel {
-      transform: scale(0.9);
-      opacity: 0;
-      transition: transform 0.5s ease, opacity 0.5s ease;
-      text-align: center;
-}
-.result-loaded.result-panel {
-      transform: scale(1);
-      opacity: 1;
-}
-.download-btn {
-      display: none;
-      margin-top: 10px;
-      background-color: #3b82f6;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 6px;
-      text-decoration: none;
-      box-shadow: 0 0 10px #3b82f6;
-}
-    footer {
-      text-align: center;
-      color: #888;
-      padding: 20px;
-      border-top: 1px solid #333;
-      font-size: 0.9rem;
-}
-.logo {
-      font-weight: bold;
-}
-  </style>
+  <title>Ransara Devnath Tools</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="logo">🚀 DreamForge AI</header>
-  <div class="container">
-    <div class="card">
-      <h2>🎨 AI Image Generator</h2>
-      <input type="text" id="imagePrompt" placeholder="" />
-      <button onclick="generateImage()">Generate Image</button>
-      <div id="loader" class="loader"></div>
-      <div id="imageResult" class="result-panel">
-      <img id="resultImage" src="" alt="Generated Image" style="max-width:100%; border-radius:10px;" />
-        <br />
-        <a id="downloadImage" class="download-btn" download>Download Image</a>
-      </div>
-    </div>
+  <!-- Navigation -->
+  <header>
+    <nav>
+      <div class="logo">🔧 Ransara Tools</div>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#editor">Text Editor</a></li>
+        <li><a href="#encrypt">JS Obfuscator</a></li>
+        <li><a href="#errorCheck">Error Detector</a></li>
+        <li><a href="#ip">IP Detector</a></li>
+        <li><a href="#passwordGen">Password Generator</a></li>
+        <li><a href="#fileSizeCalc">File Size Calculator</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <div class="card">
-      <h2>🎥 AI Video Generator</h2>
-      <input type="text" id="videoPrompt" placeholder="Describe your video idea..." />
-      <select id="videoStyle">
-        <option value="standard">Standard</option>
-        <option value="hollywood">Hollywood</option>
-      </select>
-      <button onclick="generateVideo()">Generate Video</button>
-      <div id="videoLoader" class="loader"></div>
-      <div id="videoResult" class="result-panel">
-        <video id="resultVideo" controls style="max-width:100%; border-radius:10px;"></video>
-        <br />
-        <a id="downloadVideo" class="download-btn" download>Download Video</a>
-      </div>
-    </div>
-  </div>
+  <!-- Landing Page -->
+  <section id="landing" class="landing-section fade-in">
+    <h1>Welcome to Ransara Devnath's Tool Hub 🔧</h1>
+    <p>Explore powerful developer tools — fast, free, and ad-free.</p>
+    <a href="#editor" class="cta-button">🚀 Start Using Tools</a>
+  </section>
 
+  <main>
+    <!-- Text Editor -->
+    <section id="editor" class="tool-section fade-in slide-up">
+      <h2>📝 Text Editor</h2>
+      <textarea id="textEditor" placeholder="Start typing your code..."></textarea>
+      <button onclick="copyToClipboard('textEditor')">📋 Copy</button>
+      <button onclick="downloadAsFile('textEditor', 'code.js')">⬇️ Download as.js</button>
+    </section>
+
+    <!-- JS Obfuscator -->
+    <section id="encrypt" class="tool-section fade-in slide-up">
+      <h2>🔐 JavaScript Obfuscator</h2>
+      <textarea id="jsInput" placeholder="Paste your JS code here..."></textarea>
+      <textarea id="jsOutput" placeholder="Obfuscated code will appear here..."></textarea>
+      <button onclick="copyToClipboard('jsOutput')">📋 Copy Obfuscated Code</button>
+      <button onclick="downloadAsFile('jsOutput', 'obfuscated.js')">⬇️ Download as.js</button>
+    </section>
+
+    <!-- JS Error Detector -->
+    <section id="errorCheck" class="tool-section fade-in slide-up">
+      <h2>🐞 JavaScript Error Detector</h2>
+      <textarea id="errorInput" placeholder="Type JS code to check for errors..."></textarea>
+      <pre id="errorOutput">Errors will appear here...</pre>
+    </section>
+
+    <!-- IP Address Detector -->
+    <section id="ip" class="tool-section fade-in slide-up">
+      <h2>📱 IP Address Detector</h2>
+      <button onclick="detectIP()">Detect My IP</button>
+      <p id="ipResult">Your IP will appear here...</p>
+    </section>
+
+    <!-- Password Generator -->
+    <section id="passwordGen" class="tool-section fade-in slide-up">
+      <h2>🔐 Password Generator</h2>
+      <label>Length: <input type="number" id="passLength" value="12" min="4" max="64" /></label>
+      <button onclick="generatePassword()">Generate Password</button>
+      <input type="text" id="generatedPassword" readonly />
+      <button onclick="copyToClipboard('generatedPassword')">📋 Copy Password</button>
+    </section>
+
+    <!-- File Size Calculator -->
+    <section id="fileSizeCalc" class="tool-section fade-in slide-up">
+      <h2>📦 File Size Calculator</h2>
+      <input type="file" id="fileInput" />
+      <p id="fileSizeResult">Select a file to see its size.</p>
+    </section>
+  </main>
+
+  <!-- Footer -->
   <footer>
-    🔋 <span style="color:#a855f7;">Powered by RansGPT</span> | 👨‍💻 Developed by <span style="color:#3b82f6;">Ransara Devnath</span>
+    <p>Powered by <strong>Ransara Devnath</strong></p>
   </footer>
 
-  <script>
-    window.onload = () => {
-      document.body.classList.add("loaded");
-      typeEffect();
-};
-
-    const placeholderText = "Describe your dream image...";
-    let i = 0;
-    function typeEffect() {
-      if (i < placeholderText.length) {
-        document.getElementById("imagePrompt").placeholder += placeholderText.charAt(i);
-        i++;
-        setTimeout(typeEffect, 100);
-}
-}
-
-    async function generateImage() {
-      const prompt = document.getElementById("imagePrompt").value;
-      const loader = document.getElementById("loader");
-      const resultPanel = document.getElementById("imageResult");
-      const resultImage = document.getElementById("resultImage");
-      const downloadBtn = document.getElementById("downloadImage");
-
-      loader.style.display = "block";
-      resultPanel.classList.remove("result-loaded");
-
-      const encodedKey = "bGZlZGRjNWItZWViOC00NjNhLTkyMjktNjAyMmQ1MzIwNjlj";
-      const apiKey = atob(encodedKey);
-
-      const response = await fetch("https://api.deepai.org/api/text2img", {
-        method: "POST",
-        headers: {
-          "Api-Key": apiKey,
-          "Content-Type": "application/x-www-form-urlencoded",
-},
-        body: `text=${encodeURIComponent(prompt)}`
-});
-
-      const data = await response.json();
-      loader.style.display = "none";
-      resultImage.src = data.output_url;
-      downloadBtn.href = data.output_url;
-      downloadBtn.style.display = "inline-block";
-      resultPanel.classList.add("result-loaded");
-}
-
-    function generateVideo() {
-      const loader = document.getElementById("videoLoader");
-      const resultPanel = document.getElementById("videoResult");
-      const resultVideo = document.getElementById("resultVideo");
-      const downloadBtn = document.getElementById("downloadVideo");
-
-      loader.style.display = "block";
-      resultPanel.classList.remove("result-loaded");
-
-      // Placeholder logic – replace with actual API when available
-      setTimeout(() => {
-        loader.style.display = "none";
-        resultVideo.src = "https://www.w3schools.com/html/mov_bbb.mp4"; // Sample video
-        downloadBtn.href = resultVideo.src;
-        downloadBtn.style.display = "inline-block";
-        resultPanel.classList.add("result-loaded");
-}, 3000);
-}
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
