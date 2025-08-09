@@ -3,87 +3,73 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ransara Devnath Tools</title>
+  <title>RansGPT – Smart AI Chatbot by Ransara Devnath</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="RansGPT is a fast and friendly AI chatbot built by Ransara Devnath. Ask anything, explore ideas, and chat with confidence." />
+  <meta name="keywords" content="RansGPT, AI chatbot, Ransara Devnath, smart assistant, chat AI" />
+  <meta name="author" content="Ransara Devnath" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://ransgpt-ai.netlify.app/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="RansGPT – Smart AI Chatbot by Ransara Devnath" />
+  <meta property="og:description" content="RansGPT is a fast and friendly AI chatbot built by Ransara Devnath." />
+  <meta property="og:image" content="https://i.ibb.co/5gQqr3zn/g-Hd-H298-H2-J.jpg" />
+  <meta property="og:url" content="https://ransgpt-ai.netlify.app/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="RansGPT – Smart AI Chatbot by Ransara Devnath" />
+  <meta name="twitter:description" content="RansGPT is a fast and friendly AI chatbot built by Ransara Devnath." />
+  <meta name="twitter:image" content="https://i.ibb.co/5gQqr3zn/g-Hd-H298-H2-J.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://i.ibb.co/5gQqr3zn/g-Hd-H298-H2-J.jpg" type="image/jpg" />
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Navigation -->
-  <header>
-    <nav>
-      <div class="logo">🔧 Ransara Tools</div>
-      <div class="hamburger" onclick="toggleMenu()">☰</div>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#editor">Text Editor</a></li>
-        <li><a href="#encrypt">JS Obfuscator</a></li>
-        <li><a href="#errorCheck">Error Detector</a></li>
-        <li><a href="#ip">IP Detector</a></li>
-        <li><a href="#passwordGen">Password Generator</a></li>
-        <li><a href="#fileSizeCalc">File Size Calculator</a></li>
-      </ul>
-    </nav>
+
+  <!-- 🧠 Hero Section -->
+  <header class="hero">
+    <div class="hero-greeting-block">
+      <img src="https://i.ibb.co/RTbfYbCy/NNLjcm-Xawp.png" alt="RansGPT Avatar" class="hero-avatar" />
+      <h1 class="hero-greeting-text">Welcome to <span class="brand-name">RansGPT</span> 👋</h1>
+      <p class="hero-subtext">Your smart AI companion. Ask anything, explore ideas, or just chat.</p>
+      <div class="suggestions">
+        <button class="suggest-btn" onclick="selectCommand('/help')">💡 Inspire me</button>
+        <button class="suggest-btn" onclick="selectCommand('/td')">📚 Think deeper</button>
+        <button class="suggest-btn" onclick="selectCommand('/new chat')">🌀 Start fresh</button>
+      </div>
+    </div>
   </header>
 
-  <!-- Landing Page -->
-  <section id="landing" class="landing-section fade-in">
-    <h1>Welcome to Ransara Devnath's Tool Hub 🔧</h1>
-    <p>Explore powerful developer tools — fast, free, and ad-free.</p>
-    <a href="#editor" class="cta-button">🚀 Start Using Tools</a>
-  </section>
-
+  <!-- 💬 Chat Area -->
   <main>
-    <!-- Text Editor -->
-    <section id="editor" class="tool-section fade-in slide-up">
-      <h2>📝 Text Editor</h2>
-      <textarea id="textEditor" placeholder="Start typing your code..."></textarea>
-      <button onclick="copyToClipboard('textEditor')">📋 Copy</button>
-      <button onclick="downloadAsFile('textEditor', 'code.js')">⬇️ Download as.js</button>
-    </section>
+    <div class="chat-container" id="chatContainer"></div>
 
-    <!-- JS Obfuscator -->
-    <section id="encrypt" class="tool-section fade-in slide-up">
-      <h2>🔐 JavaScript Obfuscator</h2>
-      <textarea id="jsInput" placeholder="Paste your JS code here..."></textarea>
-      <textarea id="jsOutput" placeholder="Obfuscated code will appear here..."></textarea>
-      <button onclick="copyToClipboard('jsOutput')">📋 Copy Obfuscated Code</button>
-      <button onclick="downloadAsFile('jsOutput', 'obfuscated.js')">⬇️ Download as.js</button>
-    </section>
+    <!-- ⌨️ Input Area -->
+    <div class="input-area">
+      <input type="text" id="userInput" placeholder="What’s on your mind today?" autocomplete="off" />
+      <button id="send-btn" onclick="sendMessage()">Send ➤</button>
+    </div>
 
-    <!-- JS Error Detector -->
-    <section id="errorCheck" class="tool-section fade-in slide-up">
-      <h2>🐞 JavaScript Error Detector</h2>
-      <textarea id="errorInput" placeholder="Type JS code to check for errors..."></textarea>
-      <pre id="errorOutput">Errors will appear here...</pre>
-    </section>
-
-    <!-- IP Address Detector -->
-    <section id="ip" class="tool-section fade-in slide-up">
-      <h2>📱 IP Address Detector</h2>
-      <button onclick="detectIP()">Detect My IP</button>
-      <p id="ipResult">Your IP will appear here...</p>
-    </section>
-
-    <!-- Password Generator -->
-    <section id="passwordGen" class="tool-section fade-in slide-up">
-      <h2>🔐 Password Generator</h2>
-      <label>Length: <input type="number" id="passLength" value="12" min="4" max="64" /></label>
-      <button onclick="generatePassword()">Generate Password</button>
-      <input type="text" id="generatedPassword" readonly />
-      <button onclick="copyToClipboard('generatedPassword')">📋 Copy Password</button>
-    </section>
-
-    <!-- File Size Calculator -->
-    <section id="fileSizeCalc" class="tool-section fade-in slide-up">
-      <h2>📦 File Size Calculator</h2>
-      <input type="file" id="fileInput" />
-      <p id="fileSizeResult">Select a file to see its size.</p>
-    </section>
+    <!-- 📋 Command Popup -->
+    <div id="command-popup" class="command-popup" style="display:none;"></div>
   </main>
 
-  <!-- Footer -->
+  <!-- 🧑‍💻 Footer -->
   <footer>
-    <p>Powered by <strong>Ransara Devnath</strong></p>
+    <p class="footer-text">Developer by <strong>Ransara Devnath</strong> © 2025 – Powered by RansGPT</p>
   </footer>
 
+  <!-- 🔧 Script -->
   <script src="script.js"></script>
 </body>
 </html>
